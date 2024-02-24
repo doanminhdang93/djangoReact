@@ -4,44 +4,9 @@ import axios from "axios";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { ToastContainer } from "react-toastify";
 import { notifyError } from "./toastify";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header() {
-  const location = useLocation();
-
-  const scripts = ["/assets/js/plugins.js", "/assets/js/scripts.js"];
-
-  useEffect(() => {
-    loadScripts();
-
-    return () => {
-      cleanupScripts();
-    };
-  }, [location]);
-
-  const loadScripts = () => {
-    scripts.forEach((path) => {
-      const script = document.createElement("script");
-      script.src = path;
-      script.type = "text/javascript";
-
-      document.body.appendChild(script);
-    });
-  };
-  const cleanupScripts = () => {
-    scripts.forEach((scriptPath) => {
-      const existingScripts = document.querySelectorAll(
-        `script[src="${scriptPath}"]`
-      );
-
-      existingScripts.forEach((script) => {
-        if (script.parentNode) {
-          script.parentNode.removeChild(script);
-        }
-      });
-    });
-  };
-
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   const role = localStorage.getItem("role");
   const lastname = localStorage.getItem("lastname");
@@ -128,32 +93,6 @@ function Header() {
   };
   return (
     <>
-      <div className="promo-bar" id="topbar">
-        <div className="container">
-          <div id="slideText">
-            <p>
-              <a style={{ cursor: "pointer", color: "white" }}>
-                Free ship Toàn Quốc với đơn hàng &gt; 500K
-              </a>
-            </p>
-            <p>
-              <a style={{ cursor: "pointer", color: "white" }}>
-                Đổi sản phẩm trong 7 ngày{" "}
-              </a>
-            </p>
-            <p>
-              <a style={{ cursor: "pointer", color: "white" }}>
-                Sản phẩm được bảo hành{" "}
-              </a>
-            </p>
-            <p>
-              <Link to="">
-                Hotline mua hàng: <b>(028) 7300 6200 </b>{" "}
-              </Link>
-            </p>
-          </div>
-        </div>
-      </div>
       <header className="main-header">
         <div className="wrapper-header  header-transparent " id="themes-header">
           <div className="container">
