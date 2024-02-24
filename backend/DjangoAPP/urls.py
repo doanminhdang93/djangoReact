@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import get_products_data, get_product_by_id, add_product, update_product, delete_product, login, add_user, images_by_product_id, delete_image, search_products
+from .views import get_products_data, get_product_by_id, add_product, update_product, delete_product, login, add_user, images_by_product_id, delete_image
 
 urlpatterns = [
     path('get_products_data/', get_products_data, name='get_products_data'),
@@ -11,6 +11,4 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('images_by_product_id/<str:product_id>/', images_by_product_id, name='images_by_product_id'),
     path('delete_image/<str:image_id>/', delete_image, name='delete_image'),
-    path('search_products/<str:keyword>/', search_products, name='search_products'),
-
 ]

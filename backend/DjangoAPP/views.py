@@ -278,24 +278,3 @@ def delete_image(request, image_id):
         return JsonResponse({"data": remaining_images_data})
     except Exception as e:
         return JsonResponse({'error': 'Lỗi máy chủ nội bộ'}, status=500)
-
-def search_products(request, keyword):
-    try:
-        products_ref = db.collection('products')
-        products_snapshot = products_ref.where('is_delete', '==', 0).get()
-        results = [
-            {
-                'id': product_doc.id,
-                'name': product_doc.get('name'),
-                'price': product_doc.get('price'),
-                'description': product_doc.get('description'),
-                'url_image1': product_doc.get('url_image1'),
-                'url_image2': product_doc.get('url_image2'),
-            }
-            for product_doc in products_snapshot
-            if keyword.lower() in product_doc.get('name').lower()
-        ]
-        return JsonResponse({'data': results})
-    except Exception as e:
-        print(e)
-        return JsonResponse({'error': 'Lỗi máy chủ nội bộ'}, status=500)
